@@ -1,5 +1,5 @@
 
-CC=clang
+CC=gcc
 CFLAGS=-Wall
 
 OSSL_ARGS=$(CFLAGS) \
@@ -13,8 +13,8 @@ WSSL_SRC=ecies_wolfssl.c
 WSSL_BIN=wssl
 
 all:
-	$(CC) -o $@ $(OSSL_ARGS)  -lcrypto  -o $(OSSL_BIN)  $(OSSL_SRC)
-	$(CC) -o $@ $(WSSL_ARGS)  -lwolfssl -o $(WSSL_BIN)  $(WSSL_SRC)
+	$(CC) -o $@ $(OSSL_ARGS) -o $(OSSL_BIN)  $(OSSL_SRC) -lcrypto
+#	$(CC) -o $@ $(WSSL_ARGS)  -lwolfssl -o $(WSSL_BIN)  $(WSSL_SRC)
 
 cert:
 	openssl ecparam -name prime256v1 -noout -genkey -conv_form uncompressed -outform DER -out ecc_key.der
